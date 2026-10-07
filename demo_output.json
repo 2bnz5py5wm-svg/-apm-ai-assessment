@@ -1,0 +1,291 @@
+{
+  "simulation_time": "2026-10-06T12:00:00+00:00",
+  "results": [
+    {
+      "incident_key": "DemoPSP|instant_bank_transfer|XX|EUR",
+      "scope": {
+        "provider": "DemoPSP",
+        "method": "instant_bank_transfer",
+        "country": "XX",
+        "currency": "EUR"
+      },
+      "decision": "incident_candidate",
+      "owner": "APM Tech Ops",
+      "severity": "P1",
+      "metrics": {
+        "matured_success_rate": 0.65,
+        "drop_pp": 33.0,
+        "pending_within_sla_excluded": 200
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "synthetic payment metrics",
+          "observed_at": "2026-10-06T11:59:00+00:00",
+          "value": {
+            "matured": 1000,
+            "success": 650,
+            "failed": 250,
+            "pending_over_sla": 100
+          }
+        },
+        {
+          "id": "E2",
+          "source": "synthetic baseline",
+          "value": 0.98
+        },
+        {
+          "id": "E3",
+          "source": "synthetic normalized provider status",
+          "value": "degraded"
+        }
+      ],
+      "unknowns": [
+        "Root cause is not confirmed.",
+        "Financial loss has not been calculated."
+      ],
+      "ticket_action": "create_draft",
+      "draft": {
+        "summary": "Payment degradation requires operator review.",
+        "hypotheses": [
+          {
+            "text": "A provider issue is possible, but platform and network causes remain open.",
+            "evidence_ids": [
+              "E1",
+              "E3"
+            ]
+          }
+        ],
+        "missing_evidence": [
+          "Root cause is not confirmed.",
+          "Financial loss has not been calculated."
+        ],
+        "next_checks": [
+          "Compare provider response codes with platform outbound request logs.",
+          "Check callback receipt times, queue lag and reconciliation outcomes."
+        ]
+      },
+      "ai_mode": "OFFLINE_MOCK_NO_LLM",
+      "human_approval_required": true,
+      "external_actions_executed": [],
+      "audit": {
+        "rules_version": "demo-1",
+        "prompt_version": "1",
+        "scenario": "provider_degradation",
+        "input_sha256": "dbc3dad0e48609f065e70e15842cb157172d526efae07312c7e7cb66c562d2db",
+        "evaluated_at": "2026-10-06T12:00:00+00:00"
+      }
+    },
+    {
+      "incident_key": "DemoPSP|instant_bank_transfer|XX|EUR",
+      "scope": {
+        "provider": "DemoPSP",
+        "method": "instant_bank_transfer",
+        "country": "XX",
+        "currency": "EUR"
+      },
+      "decision": "observe",
+      "owner": "APM Tech Ops",
+      "severity": "NONE",
+      "metrics": {
+        "matured_success_rate": 0.98,
+        "drop_pp": 0.0,
+        "pending_within_sla_excluded": 500
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "synthetic payment metrics",
+          "observed_at": "2026-10-06T11:59:00+00:00",
+          "value": {
+            "matured": 1000,
+            "success": 980,
+            "failed": 20,
+            "pending_over_sla": 0
+          }
+        },
+        {
+          "id": "E2",
+          "source": "synthetic baseline",
+          "value": 0.98
+        },
+        {
+          "id": "E3",
+          "source": "synthetic normalized provider status",
+          "value": "operational"
+        }
+      ],
+      "unknowns": [
+        "Root cause is not confirmed.",
+        "Financial loss has not been calculated."
+      ],
+      "ticket_action": "no_incident_ticket",
+      "draft": {
+        "summary": "An incident is not confirmed by the current evidence.",
+        "hypotheses": [],
+        "missing_evidence": [
+          "Root cause is not confirmed.",
+          "Financial loss has not been calculated."
+        ],
+        "next_checks": [
+          "Compare provider response codes with platform outbound request logs.",
+          "Check callback receipt times, queue lag and reconciliation outcomes."
+        ]
+      },
+      "ai_mode": "OFFLINE_MOCK_NO_LLM",
+      "human_approval_required": false,
+      "external_actions_executed": [],
+      "audit": {
+        "rules_version": "demo-1",
+        "prompt_version": "1",
+        "scenario": "normal_async_pending",
+        "input_sha256": "80947d14ea4b8f49abe4d857ddcacf37ddae02de3612c8b6ea03e79711d9ff67",
+        "evaluated_at": "2026-10-06T12:00:00+00:00"
+      }
+    },
+    {
+      "incident_key": "DemoPSP|instant_bank_transfer|XX|EUR",
+      "scope": {
+        "provider": "DemoPSP",
+        "method": "instant_bank_transfer",
+        "country": "XX",
+        "currency": "EUR"
+      },
+      "decision": "data_quality_review",
+      "owner": "Observability on-call",
+      "severity": "UNASSESSED",
+      "metrics": {
+        "matured_success_rate": 0.65,
+        "drop_pp": 33.0,
+        "pending_within_sla_excluded": 200
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "synthetic payment metrics",
+          "observed_at": "2026-10-06T11:40:00+00:00",
+          "value": {
+            "matured": 1000,
+            "success": 650,
+            "failed": 250,
+            "pending_over_sla": 100
+          }
+        },
+        {
+          "id": "E2",
+          "source": "synthetic baseline",
+          "value": 0.98
+        },
+        {
+          "id": "E3",
+          "source": "synthetic normalized provider status",
+          "value": "degraded"
+        }
+      ],
+      "unknowns": [
+        "Root cause is not confirmed.",
+        "Financial loss has not been calculated.",
+        "Metrics are invalid, stale, or future-dated."
+      ],
+      "ticket_action": "no_incident_ticket",
+      "draft": {
+        "summary": "An incident is not confirmed by the current evidence.",
+        "hypotheses": [],
+        "missing_evidence": [
+          "Root cause is not confirmed.",
+          "Financial loss has not been calculated.",
+          "Metrics are invalid, stale, or future-dated."
+        ],
+        "next_checks": [
+          "Compare provider response codes with platform outbound request logs.",
+          "Check callback receipt times, queue lag and reconciliation outcomes."
+        ]
+      },
+      "ai_mode": "OFFLINE_MOCK_NO_LLM",
+      "human_approval_required": false,
+      "external_actions_executed": [],
+      "audit": {
+        "rules_version": "demo-1",
+        "prompt_version": "1",
+        "scenario": "stale_metrics",
+        "input_sha256": "8b65186f89a0c5629b510ab37ec4da25fe84cc47152f22794a2f254a50bdd261",
+        "evaluated_at": "2026-10-06T12:00:00+00:00"
+      }
+    },
+    {
+      "incident_key": "DemoPSP|instant_bank_transfer|XX|EUR",
+      "scope": {
+        "provider": "DemoPSP",
+        "method": "instant_bank_transfer",
+        "country": "XX",
+        "currency": "EUR"
+      },
+      "decision": "incident_candidate",
+      "owner": "APM Tech Ops",
+      "severity": "P1",
+      "metrics": {
+        "matured_success_rate": 0.65,
+        "drop_pp": 33.0,
+        "pending_within_sla_excluded": 200
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "synthetic payment metrics",
+          "observed_at": "2026-10-06T11:59:00+00:00",
+          "value": {
+            "matured": 1000,
+            "success": 650,
+            "failed": 250,
+            "pending_over_sla": 100
+          }
+        },
+        {
+          "id": "E2",
+          "source": "synthetic baseline",
+          "value": 0.98
+        },
+        {
+          "id": "E3",
+          "source": "synthetic normalized provider status",
+          "value": "degraded"
+        }
+      ],
+      "unknowns": [
+        "Root cause is not confirmed.",
+        "Financial loss has not been calculated."
+      ],
+      "ticket_action": "update_existing_draft",
+      "draft": {
+        "summary": "Payment degradation requires operator review.",
+        "hypotheses": [
+          {
+            "text": "A provider issue is possible, but platform and network causes remain open.",
+            "evidence_ids": [
+              "E1",
+              "E3"
+            ]
+          }
+        ],
+        "missing_evidence": [
+          "Root cause is not confirmed.",
+          "Financial loss has not been calculated."
+        ],
+        "next_checks": [
+          "Compare provider response codes with platform outbound request logs.",
+          "Check callback receipt times, queue lag and reconciliation outcomes."
+        ]
+      },
+      "ai_mode": "OFFLINE_MOCK_NO_LLM",
+      "human_approval_required": true,
+      "external_actions_executed": [],
+      "audit": {
+        "rules_version": "demo-1",
+        "prompt_version": "1",
+        "scenario": "duplicate_signal",
+        "input_sha256": "7c538657e6b696599b5b00d8f150e9aeb82f796831cdac0c426c5e43915df1c9",
+        "evaluated_at": "2026-10-06T12:00:00+00:00"
+      }
+    }
+  ]
+}
